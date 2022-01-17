@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class HomeVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     
     //variables
@@ -32,6 +32,24 @@ class HomeVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+        // Mark in map
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(selectedLocation(gestureRecognizer:)))
+        gestureRecognizer.minimumPressDuration = 2
+        mapView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    //Mark in map
+    @objc func selectedLocation(gestureRecognizer:UILongPressGestureRecognizer){
+        if gestureRecognizer.state == .began {
+            let touchPoint = gestureRecognizer.location(in: self.mapView)
+            let touchCoordinates = mapView.convert(touchPoint, toCoordinateFrom: self.mapView)
+            //Mark = annotation
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = touchCoordinates
+            annotation.title = "My Location"
+            annotation.subtitle = "Hamit Seyrek"
+            mapView.addAnnotation(annotation)
+        }
     }
     
     //get update locations
@@ -44,7 +62,7 @@ class HomeVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
-
-
+    
+    
 }
 
