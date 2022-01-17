@@ -9,14 +9,19 @@ import UIKit
 import MapKit
 // For location
 import CoreLocation
+import CoreData
 
 class HomeVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var noteText: UITextField!
     
     //variables
     //Location Manager
     var locationManager = CLLocationManager()
+    var selectedLat = Double()
+    var selectedLon = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +48,21 @@ class HomeVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         if gestureRecognizer.state == .began {
             let touchPoint = gestureRecognizer.location(in: self.mapView)
             let touchCoordinates = mapView.convert(touchPoint, toCoordinateFrom: self.mapView)
+            
+            selectedLat = touchCoordinates.latitude
+            selectedLon = touchCoordinates.longitude
+            
             //Mark = annotation
             let annotation = MKPointAnnotation()
             annotation.coordinate = touchCoordinates
-            annotation.title = "My Location"
-            annotation.subtitle = "Hamit Seyrek"
+            if nameText.text != "" && noteText.text != "" {
+                annotation.title = nameText.text
+                annotation.subtitle = noteText.text
+            }else{
+                let alert = UIAlertController(title: "Alert!", message: "Name or Note area can not be null", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
             mapView.addAnnotation(annotation)
         }
     }
@@ -64,5 +79,31 @@ class HomeVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     }
     
     
+    @IBAction func saveButtonClicked(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let newPlace = NSEntityDescription.insertNewObject(forEntityName: "Places", into: context)
+        
+        if nameText.text != "" && noteText.text != "" {
+            newPlace.setValue(nameText.text, forKey: "name")
+            newPlace.setValue(noteText.text, forKey: "note")
+            newPlace.setValue(selectedLon, forKey: "longitude")
+            newPlace.setValue(selectedLat, forKey: "latitude")
+        }else{
+            let alert = UIAlertController(title: "Alert!", message: "Name or Note area can not be null", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        do {
+            try context.save()
+            let alert = UIAlertController(title: "Success :)", message: "Registration was successful.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }catch {
+            print("There is an error here")
+        }
+    }
 }
 
