@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1031.8840579710145" y="123.88392857142857"/>
         </scene>
-        <!--HomeVC-->
+        <!--View Controller-->
         <scene sceneID="FVB-4e-tg9">
             <objects>
-                <viewController id="0s4-Fc-l60" customClass="HomeVC" customModule="MyTravels" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0s4-Fc-l60" customClass="ViewController" customModule="MyTravels" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GQD-Xi-Z6h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

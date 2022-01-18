@@ -14,7 +14,6 @@
 		5EB4423E2795EAD7008BA6EB /* MyTravels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4423C2795EAD7008BA6EB /* MyTravels.xcdatamodeld */; };
 		5EB442402795EAD8008BA6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB4423F2795EAD8008BA6EB /* Assets.xcassets */; };
 		5EB442432795EAD8008BA6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB442412795EAD8008BA6EB /* LaunchScreen.storyboard */; };
-		5EBC2E9627973BD600FBC544 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC2E9527973BD600FBC544 /* HomeVC.swift */; };
 		5EBC2E982797410400FBC544 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC2E972797410400FBC544 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +27,6 @@
 		5EB4423F2795EAD8008BA6EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EB442422795EAD8008BA6EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EB442442795EAD8008BA6EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EBC2E9527973BD600FBC544 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		5EBC2E972797410400FBC544 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +60,6 @@
 		5EB442322795EAD7008BA6EB /* MyTravels */ = {
 			isa = PBXGroup;
 			children = (
-				5EBC2E9527973BD600FBC544 /* HomeVC.swift */,
 				5EB442332795EAD7008BA6EB /* AppDelegate.swift */,
 				5EB442352795EAD7008BA6EB /* SceneDelegate.swift */,
 				5EB442372795EAD7008BA6EB /* MapVC.swift */,
@@ -149,7 +146,6 @@
 			files = (
 				5EBC2E982797410400FBC544 /* ViewController.swift in Sources */,
 				5EB442382795EAD7008BA6EB /* MapVC.swift in Sources */,
-				5EBC2E9627973BD600FBC544 /* HomeVC.swift in Sources */,
 				5EB4423E2795EAD7008BA6EB /* MyTravels.xcdatamodeld in Sources */,
 				5EB442342795EAD7008BA6EB /* AppDelegate.swift in Sources */,
 				5EB442362795EAD7008BA6EB /* SceneDelegate.swift in Sources */,
