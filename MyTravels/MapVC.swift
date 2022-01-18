@@ -22,9 +22,14 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     var selectedLat = Double()
     var selectedLon = Double()
+    var selectedID : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if selectedID != nil{
+            let stringID = selectedID!.uuidString
+            print(stringID)
+        }
         // Do any additional setup after loading the view.
         
         //MapView define to viewController
@@ -83,13 +88,14 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
-        let newPlace = NSEntityDescription.insertNewObject(forEntityName: "Places", into: context)
+        let newPlace = NSEntityDescription.insertNewObject(forEntityName: "MyPlaces", into: context)
         
         if nameText.text != "" && noteText.text != "" {
             newPlace.setValue(nameText.text, forKey: "name")
             newPlace.setValue(noteText.text, forKey: "note")
             newPlace.setValue(selectedLon, forKey: "longitude")
             newPlace.setValue(selectedLat, forKey: "latitude")
+            newPlace.setValue(UUID(), forKey: "id")
         }else{
             let alert = UIAlertController(title: "Alert!", message: "Name or Note area can not be null", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

@@ -11,10 +11,10 @@
 		5EB442362795EAD7008BA6EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB442352795EAD7008BA6EB /* SceneDelegate.swift */; };
 		5EB442382795EAD7008BA6EB /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB442372795EAD7008BA6EB /* MapVC.swift */; };
 		5EB4423B2795EAD7008BA6EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB442392795EAD7008BA6EB /* Main.storyboard */; };
-		5EB4423E2795EAD7008BA6EB /* MyTravels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4423C2795EAD7008BA6EB /* MyTravels.xcdatamodeld */; };
 		5EB442402795EAD8008BA6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB4423F2795EAD8008BA6EB /* Assets.xcassets */; };
 		5EB442432795EAD8008BA6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB442412795EAD8008BA6EB /* LaunchScreen.storyboard */; };
 		5EBC2E982797410400FBC544 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC2E972797410400FBC544 /* ViewController.swift */; };
+		5EBC2E9E2797609200FBC544 /* MyTravels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC2E9C2797609200FBC544 /* MyTravels.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +23,11 @@
 		5EB442352795EAD7008BA6EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5EB442372795EAD7008BA6EB /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		5EB4423A2795EAD7008BA6EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5EB4423D2795EAD7008BA6EB /* MyTravels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTravels.xcdatamodel; sourceTree = "<group>"; };
 		5EB4423F2795EAD8008BA6EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EB442422795EAD8008BA6EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EB442442795EAD8008BA6EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EBC2E972797410400FBC544 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5EBC2E9D2797609200FBC544 /* MyTravels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTravels.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +64,11 @@
 				5EB442352795EAD7008BA6EB /* SceneDelegate.swift */,
 				5EB442372795EAD7008BA6EB /* MapVC.swift */,
 				5EB442392795EAD7008BA6EB /* Main.storyboard */,
+				5EBC2E972797410400FBC544 /* ViewController.swift */,
 				5EB4423F2795EAD8008BA6EB /* Assets.xcassets */,
 				5EB442412795EAD8008BA6EB /* LaunchScreen.storyboard */,
 				5EB442442795EAD8008BA6EB /* Info.plist */,
-				5EB4423C2795EAD7008BA6EB /* MyTravels.xcdatamodeld */,
-				5EBC2E972797410400FBC544 /* ViewController.swift */,
+				5EBC2E9C2797609200FBC544 /* MyTravels.xcdatamodeld */,
 			);
 			path = MyTravels;
 			sourceTree = "<group>";
@@ -146,9 +146,9 @@
 			files = (
 				5EBC2E982797410400FBC544 /* ViewController.swift in Sources */,
 				5EB442382795EAD7008BA6EB /* MapVC.swift in Sources */,
-				5EB4423E2795EAD7008BA6EB /* MyTravels.xcdatamodeld in Sources */,
 				5EB442342795EAD7008BA6EB /* AppDelegate.swift in Sources */,
 				5EB442362795EAD7008BA6EB /* SceneDelegate.swift in Sources */,
+				5EBC2E9E2797609200FBC544 /* MyTravels.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,12 +372,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		5EB4423C2795EAD7008BA6EB /* MyTravels.xcdatamodeld */ = {
+		5EBC2E9C2797609200FBC544 /* MyTravels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				5EB4423D2795EAD7008BA6EB /* MyTravels.xcdatamodel */,
+				5EBC2E9D2797609200FBC544 /* MyTravels.xcdatamodel */,
 			);
-			currentVersion = 5EB4423D2795EAD7008BA6EB /* MyTravels.xcdatamodel */;
+			currentVersion = 5EBC2E9D2797609200FBC544 /* MyTravels.xcdatamodel */;
 			path = MyTravels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
