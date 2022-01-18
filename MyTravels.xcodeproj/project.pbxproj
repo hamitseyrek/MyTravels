@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		5EB442342795EAD7008BA6EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB442332795EAD7008BA6EB /* AppDelegate.swift */; };
 		5EB442362795EAD7008BA6EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB442352795EAD7008BA6EB /* SceneDelegate.swift */; };
-		5EB442382795EAD7008BA6EB /* HomeVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB442372795EAD7008BA6EB /* HomeVc.swift */; };
+		5EB442382795EAD7008BA6EB /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB442372795EAD7008BA6EB /* MapVC.swift */; };
 		5EB4423B2795EAD7008BA6EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB442392795EAD7008BA6EB /* Main.storyboard */; };
 		5EB4423E2795EAD7008BA6EB /* MyTravels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4423C2795EAD7008BA6EB /* MyTravels.xcdatamodeld */; };
 		5EB442402795EAD8008BA6EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB4423F2795EAD8008BA6EB /* Assets.xcassets */; };
 		5EB442432795EAD8008BA6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB442412795EAD8008BA6EB /* LaunchScreen.storyboard */; };
+		5EBC2E9627973BD600FBC544 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC2E9527973BD600FBC544 /* HomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5EB442302795EAD7008BA6EB /* MyTravels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTravels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB442332795EAD7008BA6EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EB442352795EAD7008BA6EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5EB442372795EAD7008BA6EB /* HomeVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVc.swift; sourceTree = "<group>"; };
+		5EB442372795EAD7008BA6EB /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		5EB4423A2795EAD7008BA6EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EB4423D2795EAD7008BA6EB /* MyTravels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTravels.xcdatamodel; sourceTree = "<group>"; };
 		5EB4423F2795EAD8008BA6EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EB442422795EAD8008BA6EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EB442442795EAD8008BA6EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EBC2E9527973BD600FBC544 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +60,10 @@
 		5EB442322795EAD7008BA6EB /* MyTravels */ = {
 			isa = PBXGroup;
 			children = (
+				5EBC2E9527973BD600FBC544 /* HomeVC.swift */,
 				5EB442332795EAD7008BA6EB /* AppDelegate.swift */,
 				5EB442352795EAD7008BA6EB /* SceneDelegate.swift */,
-				5EB442372795EAD7008BA6EB /* HomeVc.swift */,
+				5EB442372795EAD7008BA6EB /* MapVC.swift */,
 				5EB442392795EAD7008BA6EB /* Main.storyboard */,
 				5EB4423F2795EAD8008BA6EB /* Assets.xcassets */,
 				5EB442412795EAD8008BA6EB /* LaunchScreen.storyboard */,
@@ -141,7 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB442382795EAD7008BA6EB /* HomeVc.swift in Sources */,
+				5EB442382795EAD7008BA6EB /* MapVC.swift in Sources */,
+				5EBC2E9627973BD600FBC544 /* HomeVC.swift in Sources */,
 				5EB4423E2795EAD7008BA6EB /* MyTravels.xcdatamodeld in Sources */,
 				5EB442342795EAD7008BA6EB /* AppDelegate.swift in Sources */,
 				5EB442362795EAD7008BA6EB /* SceneDelegate.swift in Sources */,
