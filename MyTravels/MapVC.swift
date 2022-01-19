@@ -23,24 +23,73 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     var selectedLat = Double()
     var selectedLon = Double()
     var selectedID : UUID?
+    var annotationName = ""
+    var annotationNote = ""
+    var annotationLat = Double()
+    var annotationLon = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if selectedID != nil{
-            let stringID = selectedID!.uuidString
-            print(stringID)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MyPlaces")
+            let idString = selectedID!.uuidString
+            fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
+            fetchRequest.returnsObjectsAsFaults = false
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                if results.count>0 {
+                    for result in results as! [NSManagedObject] {
+                        if let name = result.value(forKey: "name") as? String {
+                            annotationName = name
+                            if let note = result.value(forKey: "note") as? String {
+                                annotationNote = note
+                                if let latitude = result.value(forKey: "latitude") as? Double {
+                                    annotationLat = latitude
+                                    if let longitude = result.value(forKey: "longitude") as? Double {
+                                        annotationLon = longitude
+                                        
+                                        //add annotation to map
+                                        let annotation = MKPointAnnotation()
+                                        annotation.title = annotationName
+                                        annotation.subtitle = annotationNote
+                                        let coordinate = CLLocationCoordinate2D(latitude: annotationLat, longitude: annotationLon)
+                                        annotation.coordinate = coordinate
+                                        
+                                        mapView.addAnnotation(annotation)
+                                        nameText.text = annotationName
+                                        noteText.text = annotationNote
+                                        
+                                        locationManager.stopUpdatingLocation()
+                                        
+                                        let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+                                        let region = MKCoordinateRegion(center: coordinate, span: span)
+                                        mapView.setRegion(region, animated: true)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }catch{
+                print("There is an error MapVC viewDidLoad")
+            }
+        } else{
+            //Location Manager
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            //get location when user auth
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
         }
         // Do any additional setup after loading the view.
         
         //MapView define to viewController
         mapView.delegate = self
         
-        //Location Manager
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        //get location when user auth
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
         
         // Mark in map
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(selectedLocation(gestureRecognizer:)))
@@ -107,9 +156,33 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
             let alert = UIAlertController(title: "Success :)", message: "Registration was successful.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            
+            //update tableView in ViewController
+            NotificationCenter.default.post(name: NSNotification.Name("newPlaceAdded"), object: nil)
+            navigationController?.popViewController(animated: true)
         }catch {
             print("There is an error here")
         }
+    }
+    
+    // costumize annotation
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseID = "myAnnotation"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
+        if pinView == nil {
+            pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            pinView?.canShowCallout = true
+            pinView?.tintColor = UIColor.blue
+            let button = UIButton(type: UIButton.ButtonType.detailDisclosure)
+            pinView?.rightCalloutAccessoryView = button
+        } else {
+            pinView?.annotation = annotation
+        }
+        return pinView
     }
 }
 
