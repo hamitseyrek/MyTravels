@@ -30,6 +30,23 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        
+        //MapView define to viewController
+        mapView.delegate = self
+        //Location Manager
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        //get location when user auth
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        // Mark in map
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(selectedLocation(gestureRecognizer:)))
+        gestureRecognizer.minimumPressDuration = 2
+        mapView.addGestureRecognizer(gestureRecognizer)
+        
         if selectedID != nil{
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -76,25 +93,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
             }catch{
                 print("There is an error MapVC viewDidLoad")
             }
-        } else{
-            //Location Manager
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            //get location when user auth
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
         }
-        // Do any additional setup after loading the view.
-        
-        //MapView define to viewController
-        mapView.delegate = self
-        
-        
-        
-        // Mark in map
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(selectedLocation(gestureRecognizer:)))
-        gestureRecognizer.minimumPressDuration = 2
-        mapView.addGestureRecognizer(gestureRecognizer)
     }
     
     //Mark in map
@@ -123,13 +122,15 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     
     //get update locations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //get my location
-        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-        //create zoom values
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        //show in map
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
+        if selectedID == nil {
+            //get my location
+            let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+            //create zoom values
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            //show in map
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     
@@ -168,21 +169,40 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     // costumize annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
+            print("buradayım")
             return nil
         }
         
         let reuseID = "myAnnotation"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
         if pinView == nil {
+            print("buradayım2")
             pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             pinView?.canShowCallout = true
             pinView?.tintColor = UIColor.blue
             let button = UIButton(type: UIButton.ButtonType.detailDisclosure)
             pinView?.rightCalloutAccessoryView = button
         } else {
+            print("buradayım3")
             pinView?.annotation = annotation
         }
         return pinView
+    }
+    
+    //for annotation button clicked
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if selectedID != nil {
+            var requestLocation = CLLocation(latitude: annotationLat, longitude: annotationLon)
+            CLGeocoder().reverseGeocodeLocation(requestLocation) { (placeMarks, error) in
+                if placeMarks!.count > 0 {
+                    let newPlaceMark = MKPlacemark(placemark: placeMarks![0])
+                    let item = MKMapItem(placemark: newPlaceMark)
+                    item.name = self.annotationName
+                    let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                    item.openInMaps(launchOptions: launchOptions)
+                }
+            }
+        }
     }
 }
 
